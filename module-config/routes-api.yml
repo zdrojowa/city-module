@@ -1,0 +1,5 @@
+api.cities:
+  path: /cities
+  controller: Selene\Modules\CityModule\Http\Controllers\ApiController@get
+  methods:
+    - GET

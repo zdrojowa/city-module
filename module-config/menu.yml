@@ -1,0 +1,5 @@
+hotels:
+  name: Miasta
+  icon: mdi mdi-city
+  permission: CityModule
+  route: CityModule::list

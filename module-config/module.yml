@@ -1,0 +1,7 @@
+name: CityModule
+version: 1.0.0
+
+aclAnchor: CityModule
+aclName: Miasta
+
+routePrefix: CityModule
