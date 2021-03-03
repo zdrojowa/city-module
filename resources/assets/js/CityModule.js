@@ -1,17 +1,18 @@
 import Vue from 'vue';
-import draggable from 'vuedraggable';
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import {BootstrapVue, BootstrapVueIcons, IconsPlugin} from 'bootstrap-vue';
+import VueRouter from 'vue-router'
+import Index from './components/Index'
+import CityTab from './components/CityTab'
+import Sort from './components/Sort'
 
 window.axios = require('axios');
 
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
+Vue.use(VueRouter)
 
-Vue.component('draggable', draggable);
-Vue.component('nested', require('./components/nested.vue').default);
-Vue.component('list', require('./components/list.vue').default);
+const app = document.getElementById('app');
 
-const app = new Vue({
-    el: '#app'
-});
-
+new Vue({
+    components: {Index, CityTab, Sort}
+}).$mount(app);

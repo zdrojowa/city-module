@@ -1,5 +1,5 @@
-hotels:
+cities:
   name: Miasta
-  icon: mdi mdi-city
+  icon: signpost
   permission: CityModule
-  route: CityModule::list
+  route: CityModule::index

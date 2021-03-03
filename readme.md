@@ -17,9 +17,10 @@ $ composer require zdrojowa/city-module
 
 ``` bash
 "axios": "^0.19",
-"bootstrap-vue": "2.11.0"
-"vue": "^2.6.10",
-"vuedraggable": "2.23.2",
+"bootstrap-vue": "2.16.0"
+"vue": "^2.6.12",
+"vue-router": "^3.4.9",
+"vuedraggable": "2.24.3",
 ```
 
 ## Usage

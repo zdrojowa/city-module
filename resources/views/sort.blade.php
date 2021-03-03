@@ -1,39 +1,29 @@
-@extends('DashboardModule::base')
+@extends('DashboardModule::dashboard.index', ['title' => 'Sortuj miasta'])
 
-@section('title','Dashboard: Miasta')
-
-@section('stylesheets')
-    <link rel="stylesheet" href="{{ mix('vendor/css/CityModule.css','') }}">
-@endsection
-
-@section('sidebar')
-    @include('DashboardModule::sidebar.index', ['menu' => Selene\Support\Facades\MenuRepository::getPresences()])
+@section('navbar-actions')
+    <b-nav-form>
+        <b-button size="sm" class="my-2 my-sm-0" type="button" to="{{ route('CityModule::index') }}">
+            <b-icon-arrow-left></b-icon-arrow-left> Do listy
+        </b-button>
+    </b-nav-form>
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card" id="app">
-                    <div class="card-header clearfix">
-                        <h4 class="card-title float-left">Sortuj Hotele</h4>
-                        <a href="{{route('CityModule::list')}}" class="btn btn-primary float-right">
-                            <i class="mdi mdi-keyboard-backspace"></i> Do listy
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <list>
-                            {{ csrf_field() }}
-                        </list>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <b-container fluid>
+        <sort
+            :cities="{{ json_encode($cities) }}"
+            csrf="{{ csrf_token() }}"
+            route="{{ route('CityModule::api.sort') }}"
+        >
+        </sort>
+    </b-container>
+@endsection
+
+@section('stylesheets')
+    @parent
+    <link rel="stylesheet" href="{{ mix('vendor/css/CityModule.css') }}">
 @endsection
 
 @section('javascripts')
-    @parent
-    @javascript('csrf', csrf_token())
-    <script src="{{ mix('vendor/js/CityModule.js') }}"></script>
+    <script src="{{ mix("vendor/js/CityModule.js") }}"></script>
 @endsection

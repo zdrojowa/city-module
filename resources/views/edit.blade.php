@@ -1,48 +1,34 @@
-@extends('DashboardModule::base')
+@extends('DashboardModule::dashboard.index', ['title' => (isset($city) ? 'Edytowanie' : 'Dodawanie') . ' miasta'])
 
-@section('title','Dashboard')
-
-@section('stylesheets')
-    <link rel="stylesheet" href="{{ mix('vendor/css/CityModule.css','') }}">
-@endsection
-
-@section('sidebar')
-    @include('DashboardModule::sidebar.index', ['menu' => Selene\Support\Facades\MenuRepository::getPresences()])
+@section('navbar-actions')
+    <b-nav-form>
+        <b-button size="sm" class="my-2 my-sm-0" type="button" to="{{ route('CityModule::index') }}">
+            <b-icon-arrow-left></b-icon-arrow-left> Do listy
+        </b-button>
+    </b-nav-form>
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        @include('DashboardModule::partials.alerts')
+    <b-container fluid>
+        <city-tab
+                :city="{{ isset($city) ? json_encode($city) : json_encode(null) }}"
+                :languages="{{ json_encode($langs) }}"
+                csrf="{{ csrf_token() }}"
+                route="{{ isset($city) ? route('CityModule::api.update', ['city' => $city]) : route('CityModule::api.store') }}"
+                media-search-route="{{ route('MediaModule::api.files') }}"
+                media-route='/media/'
+                check-route="{{ route('CityModule::api.check') }}"
+        >
+        </city-tab>
+    </b-container>
+@endsection
 
-                        <h4 class="card-title">
-                            {{ isset($city) ? 'Edytowanie' : 'Dodawanie nowego' }} miasta
-                        </h4>
-                        <form method="POST" action="{{ isset($city) ? route('CityModule::update', ['city' => $city]) : route('CityModule::store') }}" enctype="multipart/form-data">
-                            @csrf
-                            @if (isset($city))
-                                @method('PUT')
-                            @endif
+@section('stylesheets')
+    @parent
+    <link rel="stylesheet" href="{{ mix('vendor/css/MediaModule.css') }}">
+    <link rel="stylesheet" href="{{ mix('vendor/css/CityModule.css') }}">
+@endsection
 
-                            <div class="d-flex justify-content-center">
-                                <div class="form-group @error('name') has-danger @enderror col-12">
-                                    <label for="">Nazwa</label>
-                                    <input type="text" class="form-control" name="name" placeholder="Wpisz nazwe" value="{{ isset($city) ? $city->name : old('name') }}">
-                                    @error('name')
-                                        <small class="error mt-1 text-danger d-block">{{ $message }}</small>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <button type="submit" class="float-right mt-2 btn btn-success mr-2">Zapisz</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+@section('javascripts')
+    <script src="{{ mix("vendor/js/CityModule.js") }}"></script>
 @endsection

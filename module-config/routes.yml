@@ -1,4 +1,4 @@
-list:
+index:
   path: /dashboard/cities
   controller: Selene\Modules\CityModule\Http\Controllers\CityController@index
   methods:
@@ -10,14 +10,7 @@ sort:
   controller: Selene\Modules\CityModule\Http\Controllers\CityController@sort
   methods:
     - GET
-  permission: CityModule
-
-ajax:
-  path: /dashboard/cities/ajax
-  controller: Selene\Modules\CityModule\Http\Controllers\CityController@ajax
-  methods:
-    - POST
-  permission: CityModule
+  permission: CityModule.edit
 
 create:
   path: /dashboard/cities/create
@@ -26,38 +19,9 @@ create:
     - GET
   permission: CityModule.add
 
-store:
-  path: /dashboard/cities/store
-  controller: Selene\Modules\CityModule\Http\Controllers\CityController@store
-  methods:
-    - POST
-  permission: CityModule.add
-
 edit:
   path: /dashboard/cities/{{city}}/edit
   controller: Selene\Modules\CityModule\Http\Controllers\CityController@edit
   methods:
     - GET
-  permission: CityModule.edit
-
-update:
-  path: /dashboard/cities/{{city}}
-  controller: Selene\Modules\CityModule\Http\Controllers\CityController@update
-  methods:
-    - PUT
-    - PATCH
-  permission: CityModule.edit
-
-destroy:
-  path: /dashboard/cities/{{city}}
-  controller: Selene\Modules\CityModule\Http\Controllers\CityController@destroy
-  methods:
-    - DELETE
-  permission: CityModule.delete
-
-saveOrder:
-  path: /dashboard/cities/saveOrder
-  controller: Selene\Modules\CityModule\Http\Controllers\CityController@saveOrder
-  methods:
-    - POST
   permission: CityModule.edit

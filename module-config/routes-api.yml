@@ -3,3 +3,38 @@ api.cities:
   controller: Selene\Modules\CityModule\Http\Controllers\ApiController@get
   methods:
     - GET
+
+api.check:
+  path: /cities/check
+  controller: Selene\Modules\CityModule\Http\Controllers\ApiController@check
+  methods:
+    - GET
+
+api.store:
+  path: /cities/store
+  controller: Selene\Modules\CityModule\Http\Controllers\ApiController@store
+  methods:
+    - POST
+  permission: CityModule.add
+
+api.sort:
+  path: /cities/sort
+  controller: Selene\Modules\CityModule\Http\Controllers\ApiController@sort
+  methods:
+    - POST
+  permission: CityModule.edit
+
+api.update:
+  path: /cities/{{city}}
+  controller: Selene\Modules\CityModule\Http\Controllers\ApiController@update
+  methods:
+    - PUT
+    - PATCH
+  permission: CityModule.edit
+
+api.remove:
+  path: /cities/remove/{{city}}
+  controller: Selene\Modules\CityModule\Http\Controllers\ApiController@remove
+  methods:
+    - DELETE
+  permission: CityModule.delete
